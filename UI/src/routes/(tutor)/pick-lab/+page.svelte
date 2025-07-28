@@ -21,6 +21,7 @@
 	let errors = $state<string[]>([]);
 
 	$effect(() => {
+		// BUG: TODO: if wrong session is chosen, it doesn't let you fix your mistake :(
 		errors = [];
 		if (labSessionInput === null) return;
 		if (currentSessions.includes(labSessionInput)) return;
@@ -58,13 +59,12 @@
 			</select>
 		</div>
 
-		<!-- TODO: disable button if there is an error -->
 		<button
 			onclick={startMarking}
 			disabled={!labSessionInput || !labNumberInput || errors.length !== 0}
 		>
 			Start marking
 		</button>
-		<MessagesList success={errors} />
+		<MessagesList {errors} />
 	</form>
 </main>

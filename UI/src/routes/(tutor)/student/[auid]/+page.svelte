@@ -59,7 +59,8 @@
 				'Arnav',
 				$labNumberBeingMarked,
 				$labSessionBeingMarked,
-				'marked student'
+				'marked student',
+				`successfully assigned ${student.AUID} ${numberOfMarks} marks`
 			)
 		};
 		try {
