@@ -1,0 +1,49 @@
+<script lang="ts">
+	import { tutorToken } from '$lib/auth/store';
+	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
+
+	let name: string, password: string;
+	let error: string;
+
+	const submitHandler = async (e: Event) => {
+		e.preventDefault();
+		try {
+			const result = await fetch('/api/login', {
+				method: 'POST',
+				body: JSON.stringify({ name, password })
+			});
+			const { token } = await result.json();
+			tutorToken.set(token);
+			localStorage.setItem('tutorToken', token);
+		} catch (e: any) {
+			error = e;
+		}
+	};
+</script>
+
+<main>
+	<h1>Login</h1>
+	<form class="gap- flex flex-col items-start gap-12">
+		<div class="input-group">
+			<label for="login-name">Name</label>
+			<input type="text" id="login-name" placeholder="Enter Name" bind:value={name} required />
+		</div>
+
+		<div class="input-group">
+			<label for="login-password">Password</label>
+			<input
+				type="password"
+				id="login-password"
+				placeholder="Enter Password"
+				bind:value={password}
+				required
+			/>
+		</div>
+
+		<button on:click={submitHandler}>Login</button>
+
+		{#if error}
+			<ErrorMessage>{error}</ErrorMessage>
+		{/if}
+	</form>
+</main>
