@@ -1,5 +1,6 @@
 export-spreadsheet-photos*
 /inputs/students*.csv
+legacy
 
 # Logs
 logs
