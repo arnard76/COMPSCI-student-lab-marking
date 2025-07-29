@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from "fs";
 
-const studentsText = readFileSync("./students.csv", "utf-8");
+const studentsText = readFileSync("./students 2.csv", "utf-8");
 
 const students = studentsText
   .split("\n")
@@ -18,4 +18,8 @@ const students = studentsText
 
 console.log({ students });
 
-writeFileSync("./UI/src/lib/students.json", JSON.stringify(students), "utf-8");
+writeFileSync(
+  "../UI/src/lib/students 2.json",
+  JSON.stringify(students),
+  "utf-8"
+);
