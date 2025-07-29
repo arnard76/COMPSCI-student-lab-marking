@@ -2,22 +2,28 @@
 	import { tutorToken } from '$lib/auth/store';
 	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
 
-	let name: string, password: string;
-	let error: string;
+	let name = $state<string | undefined>(),
+		password = $state<string | undefined>(),
+		error = $state<string | undefined>(),
+		loading = $state(false);
 
 	const submitHandler = async (e: Event) => {
 		e.preventDefault();
+		loading = true;
 		try {
 			const result = await fetch('/api/login', {
 				method: 'POST',
 				body: JSON.stringify({ name, password })
 			});
+
+			if (result.status !== 200) throw Error('Login failed with: ' + (await result.text()));
 			const { token } = await result.json();
 			tutorToken.set(token);
 			localStorage.setItem('tutorToken', token);
 		} catch (e: any) {
 			error = e;
 		}
+		loading = false;
 	};
 </script>
 
@@ -40,9 +46,9 @@
 			/>
 		</div>
 
-		<button on:click={submitHandler}>Login</button>
+		<button onclick={submitHandler} disabled={loading}>Login</button>
 
-		{#if error}
+		{#if error && !loading}
 			<ErrorMessage>{error}</ErrorMessage>
 		{/if}
 	</form>

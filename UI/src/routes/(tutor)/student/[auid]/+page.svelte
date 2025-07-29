@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
 	import MessagesList from '$lib/components/MessagesList.svelte';
-	import SuccessMessage from '$lib/components/SuccessMessage.svelte';
 	import { logsSchema, type Logs } from '$lib/db-schema/logs';
 	import { marksSchema, type Marks } from '$lib/db-schema/marks';
 	import { formatErrorLog, formatLog } from '$lib/logs/format';
@@ -14,6 +12,7 @@
 	let numberOfMarks = $state<number>();
 	let errors = $state<string[]>([]);
 	let success = $state<string[]>([]);
+	let loading = $state(false);
 
 	$effect(() => {
 		if (!student) goto(`/find-student`);
@@ -27,27 +26,28 @@
 
 	async function submitMarks(e: MouseEvent) {
 		e.preventDefault();
+		loading = true;
 		errors = [];
 		success = [];
 
-		if (!student) {
-			let errorMessage = formatErrorLog('marked student', `student is undefined: ${student}`);
-			errors.push(errorMessage);
-			return;
-		}
+		try {
+			if (!student) {
+				throw formatErrorLog('marked student', `student is undefined: ${student}`);
+			}
 
-		if (numberOfMarks === undefined) {
-			let errorMessage = formatErrorLog('marked student', `no marks selected: ${numberOfMarks}`);
-			errors.push(errorMessage);
-			return;
-		}
+			if (numberOfMarks === undefined) {
+				throw formatErrorLog('marked student', `no marks selected: ${numberOfMarks}`);
+			}
 
-		if ($labNumberBeingMarked === null || $labSessionBeingMarked === null) {
-			let errorMessage = formatErrorLog(
-				'marked student',
-				`lab number is ${$labNumberBeingMarked} and lab session is ${$labSessionBeingMarked}. One of these is undefined.`
-			);
-			errors.push(errorMessage);
+			if ($labNumberBeingMarked === null || $labSessionBeingMarked === null) {
+				throw formatErrorLog(
+					'marked student',
+					`lab number is ${$labNumberBeingMarked} and lab session is ${$labSessionBeingMarked}. One of these is undefined.`
+				);
+			}
+		} catch (e: any) {
+			loading = false;
+			errors.push(e);
 			return;
 		}
 
@@ -72,11 +72,14 @@
 			});
 
 			if (res.status !== 201)
-				throw Error(
-					`Didn't add marks successfully: fetch request failed with code: ${res.status} ::: ${await res.json()}`
-				);
+				throw Error(`log request failed with code: ${res.status} ::: ${await res.json()}`);
 		} catch (e: any) {
-			errors.push(formatErrorLog('marked student', e));
+			errors.push(
+				formatErrorLog(
+					'marked student',
+					formatErrorLog('marked student', `Event not logged because: ${e}`)
+				)
+			);
 		}
 
 		// UPDATE DATABASE
@@ -94,11 +97,9 @@
 				body: JSON.stringify(marks)
 			});
 			if (res.status !== 201)
-				throw Error(
-					`Didn't add marks successfully: fetch request failed with code: ${res.status} ::: ${await res.json()}`
-				);
+				throw Error(`add marks request failed with code: ${res.status} ::: ${await res.json()}`);
 		} catch (e: any) {
-			errors.push(formatErrorLog('marked student', `Couldn't save marks because: ${e}`));
+			errors.push(formatErrorLog('marked student', `marks not saved because: ${e}`));
 		}
 
 		if (errors.length) {
@@ -109,12 +110,14 @@
 			downloadEl.setAttribute('href', userDataString);
 			downloadEl.setAttribute('download', `${student.AUID} assigned ${numberOfMarks} marks.json`);
 			downloadEl.click();
-			errors.push('Saved marks locally (add to lab spreadsheet manually)');
+			success.push('Saved marks locally (add to lab spreadsheet manually)');
 		} else {
 			// if everything goes fine 🙂
 			success.push('Uploaded and logged marks');
-			setTimeout(() => goto(`/find-student`), 3000);
+			setTimeout(() => goto(`/find-student`), 1500);
 		}
+
+		loading = false;
 	}
 </script>
 
@@ -149,12 +152,14 @@
 			</fieldset>
 
 			<div class=" mt-12 flex w-full justify-center lg:justify-start">
-				<button disabled={numberOfMarks === undefined} onclick={submitMarks}>
+				<button disabled={numberOfMarks === undefined || loading} onclick={submitMarks}>
 					Finish marking {student.name.split(' ')[0]}
 				</button>
 			</div>
 
-			<MessagesList {errors} {success} />
+			{#if !loading}
+				<MessagesList {errors} {success} />
+			{/if}
 		</form>
 	</main>
 {/if}

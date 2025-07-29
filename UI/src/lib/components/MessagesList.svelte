@@ -5,16 +5,18 @@
 	let { errors = [], success = [] } = $props();
 </script>
 
-<div class="mt-4 flex flex-col items-start gap-4">
-	{#each errors as error (error)}
-		<ErrorMessage>
-			{error}
-		</ErrorMessage>
-	{/each}
+{#if errors.length || success.length}
+	<div class="mt-4 flex flex-col items-start gap-4">
+		{#each errors as error (error)}
+			<ErrorMessage>
+				{error}
+			</ErrorMessage>
+		{/each}
 
-	{#each success as successMessage (successMessage)}
-		<SuccessMessage>
-			{successMessage}
-		</SuccessMessage>
-	{/each}
-</div>
+		{#each success as successMessage (successMessage)}
+			<SuccessMessage>
+				{successMessage}
+			</SuccessMessage>
+		{/each}
+	</div>
+{/if}
