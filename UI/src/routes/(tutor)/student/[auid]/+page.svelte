@@ -55,6 +55,8 @@
 		const markedTime = dayjs().toISOString();
 		const log: Logs = {
 			dateTime: markedTime,
+			// TODO: replace 'Arnav' with the name of the tutor
+			// So have to get tutor name somehow? maybe during login?
 			logMessage: formatLog(
 				'Arnav',
 				$labNumberBeingMarked,
