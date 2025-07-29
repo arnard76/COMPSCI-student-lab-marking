@@ -77,3 +77,8 @@ After the first lab session, I noticed these issues!
 - add loading after 'mark student' button is clicked ✅
 - ~~automatic screenshot capture~~ not as useful as 👇
 - automatic download a log and the marks ✅(even if database works)
+- some students weren't found in the app search so I noted them on whatsapp
+  some students weren't in the app's database/server storage
+  because the source is the excel file which was updated
+  TEMP solution: update from excel
+  permanent solution: read excel automatically or use a common database for both?
