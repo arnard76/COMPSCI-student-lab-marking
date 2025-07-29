@@ -95,10 +95,6 @@ input[type='password'] {
 	@apply flex w-full items-center gap-4 rounded-md p-2 drop-shadow-md md:w-max;
 }
 
-.status-message .iconify {
-	@apply text-8xl;
-}
-
 .status-message p {
 	@apply font-bold text-white;
 }

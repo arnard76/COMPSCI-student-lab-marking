@@ -21,11 +21,10 @@
 	let errors = $state<string[]>([]);
 
 	$effect(() => {
-		// BUG: TODO: if wrong session is chosen, it doesn't let you fix your mistake :(
 		errors = [];
 		if (labSessionInput === null) return;
 		if (currentSessions.includes(labSessionInput)) return;
-		errors.push(`This session doesn't happen today`);
+		errors = [`This session doesn't happen today`];
 	});
 
 	function startMarking(e: MouseEvent) {
