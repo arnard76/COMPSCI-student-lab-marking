@@ -74,6 +74,6 @@ Depending on how many tasks the student has completed, provide a mark of 0, 1 or
 
 After the first lab session, I noticed these issues!
 
-- add loading after 'mark student' button is clicked
+- add loading after 'mark student' button is clicked ✅
 - automatic screenshot capture
-- automatic download a log and the marks (even if database works)
+- automatic download a log and the marks ✅(even if database works)

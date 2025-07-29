@@ -102,16 +102,19 @@
 			errors.push(formatErrorLog('marked student', `marks not saved because: ${e}`));
 		}
 
-		if (errors.length) {
-			// save marks locally
-			const userDataString =
-				'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify({ marks, log }));
-			const downloadEl = document.createElement('a');
-			downloadEl.setAttribute('href', userDataString);
-			downloadEl.setAttribute('download', `${student.AUID} assigned ${numberOfMarks} marks.json`);
-			downloadEl.click();
-			success.push('Saved marks locally (add to lab spreadsheet manually)');
-		} else {
+		// save marks locally
+		const userDataString =
+			'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify({ marks, log }));
+		const downloadEl = document.createElement('a');
+		downloadEl.setAttribute('href', userDataString);
+		downloadEl.setAttribute(
+			'download',
+			`${window.location.hostname} - ${student.AUID} assigned ${numberOfMarks} marks.json`
+		);
+		downloadEl.click();
+		success.push('Saved marks locally (add to lab spreadsheet manually)');
+
+		if (errors.length === 0) {
 			// if everything goes fine 🙂
 			success.push('Uploaded and logged marks');
 			setTimeout(() => goto(`/find-student`), 1500);
