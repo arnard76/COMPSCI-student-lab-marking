@@ -1,5 +1,11 @@
+' Original source: https://www.reddit.com/r/excel/comments/1723zka/comment/k3udv1k/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+
+' ## Run this script
+' * Open Excel Desktop (doesn't work in web version)
+' * Load Excel, click Developer, Visual basic - this will bring the vb window up. or use the shortcut Alt + F11
+' * Click tools/references and scroll down the list looking for Microsoft Scripting Runtime - if box not ticked please tick it, click ok and close vb window.
+
 Sub ExportImages_ExtendOffice()
-'Updated by Extendoffice 20220308
     Dim xStrPath As String
     Dim xStrImgName As String
     Dim xImg As Shape

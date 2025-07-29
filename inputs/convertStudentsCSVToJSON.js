@@ -19,7 +19,7 @@ const students = studentsText
 console.log({ students });
 
 writeFileSync(
-  "../UI/src/lib/students 2.json",
+  "../UI/src/lib/server/students 2.json",
   JSON.stringify(students),
   "utf-8"
 );
