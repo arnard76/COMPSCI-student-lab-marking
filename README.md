@@ -80,5 +80,11 @@ After the first lab session, I noticed these issues!
 - some students weren't found in the app search so I noted them on whatsapp
   some students weren't in the app's database/server storage
   because the source is the excel file which was updated
-  TEMP solution: update from excel
+  TEMP solution: update from excel ✅
   permanent solution: read excel automatically or use a common database for both?
+
+After second lab issues:
+
+- have to go to database to export mark students data for excel automate script
+  once lab is over, would be great to display the inputs for the excel script
+  e.g. as 3 copy-paste actions on a laptop
