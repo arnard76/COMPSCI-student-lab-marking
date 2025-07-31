@@ -5,7 +5,7 @@
 <main>
 	<h1>ooops, something went wrong!</h1>
 	<h2>{page.status}: {page.error?.message}</h2>
-	{#if page.error?.message.toLowerCase().includes('invalid token')}
+	{#if page.status === 401}
 		<a href="/logout">Try logging out?</a>
 	{:else}
 		<a href="/">Back to home page?</a>
