@@ -11,14 +11,16 @@ const labColumns = {
 
 function main(
   workbook: ExcelScript.Workbook,
-  currentLabNumber: number,
+  currentLabNumber: string,
   currentLabSession: string,
   marks: string[]
 ) {
   const columnForLabSession: string = labColumns[currentLabSession];
-  const worksheetIndex = currentLabNumber - 1;
-  workbook.getWorksheets()[worksheetIndex].activate();
-  const worksheet = workbook.getActiveWorksheet();
+  const worksheet = workbook
+    .getWorksheets()
+    .find((worksheet) => worksheet.getName() === currentLabNumber);
+  if (!worksheet) return;
+  worksheet.activate();
 
   marks.forEach((string) => {
     const [AUID, marksText] = string.split("|");

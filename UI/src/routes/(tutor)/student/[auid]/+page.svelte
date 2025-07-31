@@ -93,7 +93,7 @@
 		};
 		try {
 			marksSchema.parse(marks);
-			const res = await fetch('/api/add-marks', {
+			const res = await fetch('/api/marks', {
 				method: 'POST',
 				headers: { 'Content-type': 'application/json' },
 				body: JSON.stringify(marks)

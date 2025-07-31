@@ -79,6 +79,10 @@ input[type='password'] {
 	@apply w-full rounded-md border-2 border-solid border-borderdefault p-1.5 font-semibold text-[#464646] md:w-64;
 }
 
+input:disabled {
+	@apply bg-gray-200;
+}
+
 .input-group {
 	@apply w-full;
 }
