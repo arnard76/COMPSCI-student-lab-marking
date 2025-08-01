@@ -57,8 +57,8 @@
 <Modal {onclose}>
 	{#if $labNumberBeingMarked && $labSessionBeingMarked && studentMarksForExcelScipt}
 		<div class="flex flex-col gap-2">
-			<CopyToClipboard value={$labSessionBeingMarked} />
 			<CopyToClipboard value={$labNumberBeingMarked} />
+			<CopyToClipboard value={$labSessionBeingMarked} />
 
 			<CopyToClipboard value={JSON.stringify(studentMarksForExcelScipt)}>
 				<JsonView json={studentMarksForExcelScipt} />
