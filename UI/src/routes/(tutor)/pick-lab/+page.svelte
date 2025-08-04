@@ -1,20 +1,17 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
 	import MessagesList from '$lib/components/MessagesList.svelte';
-	import {
-		getCurrentLabSessions,
-		labSessions,
-		labWeeks,
-		type LabSession
-	} from '$lib/labDefinitions';
+	import { getCurrentLabSessions, labSessions, type LabSession } from '$lib/labDefinitions';
 	import { labNumberBeingMarked, labSessionBeingMarked } from '$lib/store';
 
-	// TODO: pick a default lab to start marking (based on the week and day)
+	let { data } = $props();
 
-	let labNumberInput = $state<string | null>($labNumberBeingMarked);
+	labNumberBeingMarked.set(data.currentLabWeek);
 	const currentSessions = getCurrentLabSessions();
 	let labSessionInput = $state<LabSession | null>(
+		// TODO: pick a default lab session on the day based on the time
+		// Right now it just chooses the first one `currentSessions[0]` of the day (not ideal for my wednesday session because it is the second one)
+
 		$labSessionBeingMarked || (currentSessions.length ? currentSessions[0] : null)
 	);
 
@@ -30,25 +27,15 @@
 	function startMarking(e: MouseEvent) {
 		e.preventDefault();
 
-		if (!labNumberInput || !labSessionInput) return;
+		if (!labSessionInput) return;
 		goto('/find-student');
-		labNumberBeingMarked.set(labNumberInput);
 		labSessionBeingMarked.set(labSessionInput);
 	}
 </script>
 
 <main>
-	<h1>Pick Lab</h1>
-	<form class="gap- flex flex-col items-start gap-12">
-		<div class="input-group">
-			<label for="lab-number-input">Select a lab number (week)</label>
-			<select id="lab-number-input" bind:value={labNumberInput}>
-				{#each labWeeks as labWeek (labWeek)}
-					<option value={labWeek}>{labWeek}</option>
-				{/each}
-			</select>
-		</div>
-
+	<h1>Pick {$labNumberBeingMarked} Session</h1>
+	<form class="mt-8 flex flex-col items-start gap-10">
 		<div class="input-group">
 			<label for="lab-session-input">Select a lab session (time)</label>
 			<select id="lab-session-input" bind:value={labSessionInput}>
@@ -58,10 +45,7 @@
 			</select>
 		</div>
 
-		<button
-			onclick={startMarking}
-			disabled={!labSessionInput || !labNumberInput || errors.length !== 0}
-		>
+		<button onclick={startMarking} disabled={!labSessionInput || errors.length !== 0}>
 			Start marking
 		</button>
 		<MessagesList {errors} />

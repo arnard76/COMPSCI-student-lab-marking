@@ -90,3 +90,5 @@ After second lab issues:
   e.g. as 3 copy-paste actions on a laptop ✅
 
 - small wait time after finished marking ✅ reduced and added success message feedback
+
+- encourage tutor to put all marks in db into excel spreadsheet (not just the one being marked currently!)
