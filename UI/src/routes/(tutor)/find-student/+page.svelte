@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import MessagesList from '$lib/components/MessagesList.svelte';
+	import { globalSuccesses } from '$lib/globalMessages';
 	import { students, type Student } from '$lib/store';
 	import Icon from '@iconify/svelte';
 
@@ -18,7 +20,7 @@
 	const studentPageURL = (AUID: Student['AUID']) => `/student/${AUID}`;
 </script>
 
-<main class="p-0! flex h-full flex-col">
+<main class="p-0! relative flex h-full flex-col">
 	<div class="input-container px- flex justify-between gap-2 px-4 py-4">
 		<input
 			type="search"
@@ -60,5 +62,8 @@
 		</table>
 	</div>
 
+	<div class="absolute bottom-0 m-4">
+		<MessagesList success={$globalSuccesses} />
+	</div>
 	<!-- <AlphabetScrollbar /> -->
 </main>

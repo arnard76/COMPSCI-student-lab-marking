@@ -4,6 +4,7 @@
 	import MessagesList from '$lib/components/MessagesList.svelte';
 	import { logsSchema, type Logs } from '$lib/db-schema/logs';
 	import { marksSchema, type Marks } from '$lib/db-schema/marks';
+	import { addMessage } from '$lib/globalMessages';
 	import { formatErrorLog, formatLog } from '$lib/logs/format';
 	import { labNumberBeingMarked, labSessionBeingMarked, students, type Student } from '$lib/store';
 	import dayjs from 'dayjs';
@@ -117,9 +118,8 @@
 		success.push('Saved marks locally (add to lab spreadsheet manually)');
 
 		if (errors.length === 0) {
-			// if everything goes fine 🙂
-			success.push('Uploaded and logged marks');
-			setTimeout(() => goto(`/find-student`), 1500);
+			addMessage('success', 'Uploaded and logged marks', 2_000);
+			goto(`/find-student`);
 		}
 
 		loading = false;

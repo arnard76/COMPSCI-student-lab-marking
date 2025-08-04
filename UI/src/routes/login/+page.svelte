@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { tutorToken } from '$lib/auth/store';
 	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
 
@@ -20,6 +21,7 @@
 			const { token } = await result.json();
 			tutorToken.set(token);
 			localStorage.setItem('tutorToken', token);
+			goto('/pick-lab');
 		} catch (e: any) {
 			error = e;
 		}

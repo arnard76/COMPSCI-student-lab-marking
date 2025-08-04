@@ -87,4 +87,6 @@ After second lab issues:
 
 - have to go to database to export mark students data for excel automate script
   once lab is over, would be great to display the inputs for the excel script
-  e.g. as 3 copy-paste actions on a laptop
+  e.g. as 3 copy-paste actions on a laptop ✅
+
+- small wait time after finished marking ✅ reduced and added success message feedback
