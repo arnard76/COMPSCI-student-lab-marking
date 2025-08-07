@@ -112,7 +112,7 @@
 		downloadEl.setAttribute('href', userDataString);
 		downloadEl.setAttribute(
 			'download',
-			`${window.location.hostname} - ${student.AUID} assigned ${numberOfMarks} marks.json`
+			`${window.location.hostname} - ${student.AUID} assigned ${numberOfMarks} marks for ${$labNumberBeingMarked}.json`
 		);
 		downloadEl.click();
 		success.push('Saved marks locally (add to lab spreadsheet manually)');
