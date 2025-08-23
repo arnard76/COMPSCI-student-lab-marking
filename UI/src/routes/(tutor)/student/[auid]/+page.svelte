@@ -107,12 +107,12 @@
 
 		// save marks locally
 		const userDataString =
-			'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify({ marks, log }));
+			'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify({ marks, log, errors }));
 		const downloadEl = document.createElement('a');
 		downloadEl.setAttribute('href', userDataString);
 		downloadEl.setAttribute(
 			'download',
-			`${window.location.hostname} - ${student.AUID} assigned ${numberOfMarks} marks for ${$labNumberBeingMarked}.json`
+			`${window.location.hostname}${errors.length ? ' Errored' : ''} - ${student.AUID} assigned ${numberOfMarks} marks for ${$labNumberBeingMarked}.json`
 		);
 		downloadEl.click();
 		success.push('Saved marks locally (add to lab spreadsheet manually)');
@@ -133,7 +133,7 @@
 			onerror={({ currentTarget }) => {
 				if (!student) return;
 				(currentTarget as HTMLImageElement).onerror = null; // prevents looping
-				(currentTarget as HTMLImageElement).src = '';
+				(currentTarget as HTMLImageElement).src = '/placeholder-when-no-student-photo.png';
 				(currentTarget as HTMLImageElement).alt = `${student.name} has no student ID photo`;
 			}}
 			src="/api/student-photo/{student.AUID}"
