@@ -1,5 +1,5 @@
 import { authenticateToken } from '$lib/server/credentials';
-import students from '$lib/server/students v2.json';
+import students from '$lib/server/students 3.json';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ cookies }) => {
