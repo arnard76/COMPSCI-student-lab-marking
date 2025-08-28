@@ -100,3 +100,7 @@ Depending on how many tasks the student has completed, provide a mark of 0, 1 or
 - have to reauthenticate every lab session because cookie becomes invalid after X time (increase time?)
 
 - PWA: app on phone, not website anymore! more screen real estate, more smooth 😎😎😎
+
+- when searching, the 'clear search' button is tiny next to the search button. The search button is no longer needed because it is only an affordance for what the box is for. The actual search happens automatically (without clicking the search button icon).
+
+![Image proof](https://mark-compsci-235-student-lab-tasks.vercel.app/pick-lab/UI%20issue%20-%20small%20clear%20search%20button.png)
