@@ -72,7 +72,7 @@ Depending on how many tasks the student has completed, provide a mark of 0, 1 or
 
 ## Improvement Ideas
 
-After the first lab session, I noticed these issues!
+### After the first lab session, I noticed these issues!
 
 - add loading after 'mark student' button is clicked ✅
 - ~~automatic screenshot capture~~ not as useful as 👇
@@ -83,7 +83,7 @@ After the first lab session, I noticed these issues!
   TEMP solution: update from excel ✅
   permanent solution: read excel automatically or use a common database for both?
 
-After second lab issues:
+### After second lab issues:
 
 - have to go to database to export mark students data for excel automate script
   once lab is over, would be great to display the inputs for the excel script
@@ -92,3 +92,9 @@ After second lab issues:
 - small wait time after finished marking ✅ reduced and added success message feedback
 
 - encourage tutor to put all marks in db into excel spreadsheet (not just the one being marked currently!)
+
+### Just improvements during week 6 (lab05). Smooth sailing so far! Nice
+
+- Haptic feedback for error. When something goes wrong, vibrate!
+
+- have to reauthenticate every lab session because cookie becomes invalid after X time (increase time?)
