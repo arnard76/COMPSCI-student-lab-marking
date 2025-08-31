@@ -75,7 +75,9 @@
 			});
 
 			if (res.status !== 201)
-				throw Error(`log request failed with code: ${res.status} ::: ${await res.json()}`);
+				throw Error(
+					`log request failed with code ${res.status} and message: ${JSON.stringify(await res.json())}`
+				);
 		} catch (e: any) {
 			errors.push(
 				formatErrorLog(
@@ -100,7 +102,9 @@
 				body: JSON.stringify(marks)
 			});
 			if (res.status !== 201)
-				throw Error(`add marks request failed with code: ${res.status} ::: ${await res.json()}`);
+				throw Error(
+					`add marks request failed with code ${res.status} and message: ${JSON.stringify(await res.json())}`
+				);
 		} catch (e: any) {
 			errors.push(formatErrorLog('marked student', `marks not saved because: ${e}`));
 		}
@@ -124,6 +128,13 @@
 
 		loading = false;
 	}
+
+	$effect(() => {
+		if (errors.length === 0) return;
+		if (!('vibrate' in navigator)) return;
+
+		navigator.vibrate(1_000);
+	});
 </script>
 
 {#if student}

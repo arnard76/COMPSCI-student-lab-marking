@@ -95,11 +95,15 @@ Depending on how many tasks the student has completed, provide a mark of 0, 1 or
 
 ### Just improvements during week 6 (lab05). Smooth sailing so far! Nice
 
-- Haptic feedback for error. When something goes wrong, vibrate!
+- Haptic feedback for error. When something goes wrong, vibrate! ✅✅ vibrates for a second
 
 - have to reauthenticate every lab session because cookie becomes invalid after X time (increase time?) ✅✅
 
-- PWA: app on phone, not website anymore! more screen real estate, more smooth 😎😎😎
+- PWA: app on phone, not website anymore! more screen real estate, more smooth 😎😎😎 ✅✅
+
+- Better Logo, right now it is too small to read or recognise 😭😭
+
+- a way to logout on app because hard to navigate to `/logout` when there is no URL bar 😅😅
 
 - when searching, the 'clear search' button is tiny next to the search button. The search button is no longer needed because it is only an affordance for what the box is for. The actual search happens automatically (without clicking the search button icon).
 

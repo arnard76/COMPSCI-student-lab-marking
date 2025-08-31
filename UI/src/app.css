@@ -96,7 +96,7 @@ input:disabled {
 }
 
 .status-message {
-	@apply flex w-full items-center gap-4 rounded-md p-2 drop-shadow-md md:w-max;
+	@apply flex w-full max-w-screen items-center gap-4 rounded-md p-2 drop-shadow-md md:w-max;
 }
 
 .status-message p {
