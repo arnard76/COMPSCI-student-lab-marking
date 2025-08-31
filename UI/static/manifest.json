@@ -1,7 +1,7 @@
 {
 	"name": "COMPSCI 235 Lab Marking App",
 	"short_name": "COMPSCI-235-labs",
-	"start_url": "/",
+	"start_url": "/pick-lab",
 	"display": "standalone",
 	"display_override": "minimal-ui",
 	"description": "This app can be used to mark COMPSCI 235 students during the lab sessions. You pick the current lab session first. Then you can select students, provide them a mark of 0, 1 or 2. Press 'Finish Marking' and you're done!",
