@@ -97,7 +97,7 @@ Depending on how many tasks the student has completed, provide a mark of 0, 1 or
 
 - Haptic feedback for error. When something goes wrong, vibrate!
 
-- have to reauthenticate every lab session because cookie becomes invalid after X time (increase time?)
+- have to reauthenticate every lab session because cookie becomes invalid after X time (increase time?) ✅✅
 
 - PWA: app on phone, not website anymore! more screen real estate, more smooth 😎😎😎
 
