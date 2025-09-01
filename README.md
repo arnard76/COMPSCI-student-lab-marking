@@ -101,7 +101,7 @@ Depending on how many tasks the student has completed, provide a mark of 0, 1 or
 
 - PWA: app on phone, not website anymore! more screen real estate, more smooth 😎😎😎 ✅✅
 
-- Better Logo, right now it is too small to read or recognise 😭😭
+- Better Logo, right now it is too small to read or recognise 😭😭 ✅✅
 
 - a way to logout on app because hard to navigate to `/logout` when there is no URL bar 😅😅
 
