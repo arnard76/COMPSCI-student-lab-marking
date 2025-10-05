@@ -28,8 +28,8 @@ const weekStarts = {
 	Lab06: LAB01_WEEK_START.add(7, 'weeks'),
 	Lab07: LAB01_WEEK_START.add(8, 'weeks'),
 	Lab08: LAB01_WEEK_START.add(9, 'weeks'),
-	Lab09: LAB01_WEEK_START.add(11, 'weeks'),
-	Lab10: LAB01_WEEK_START.add(12, 'weeks')
+	Lab09: LAB01_WEEK_START.add(10, 'weeks'),
+	Lab10: LAB01_WEEK_START.add(11, 'weeks')
 };
 export function getCurrentLabWeek(): string | 'Midsem' | undefined {
 	const now = dayjs();
