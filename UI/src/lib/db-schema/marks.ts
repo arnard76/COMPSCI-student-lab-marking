@@ -12,8 +12,8 @@ export const marks = pgTable(
 	{
 		AUID: varchar({ length: 20 }).notNull(),
 		marks: integer().notNull(),
-		labSession: labSession(),
-		labWeek: labWeek()
+		labSession: labSession().notNull(),
+		labWeek: labWeek().notNull()
 	},
 	(table) => [
 		primaryKey({ columns: [table.AUID, table.labWeek, table.labSession] }),

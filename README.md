@@ -15,8 +15,8 @@ So in order to mark for a student, the tutor needs to do the following
 - name e.g. Arnav Shekaran
 - ID photo
 - AUID number e.g. 835020202
-- UPI e.g. ashe292
-- email e.g. ashe292@aucklanduni.ac.nz
+- UPI e.g. aaba999
+- email e.g. aaba999@aucklanduni.ac.nz
 
 ### assess student's tasks
 

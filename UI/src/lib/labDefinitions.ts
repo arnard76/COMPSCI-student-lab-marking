@@ -31,7 +31,7 @@ const weekStarts = {
 	Lab09: LAB01_WEEK_START.add(10, 'weeks'),
 	Lab10: LAB01_WEEK_START.add(11, 'weeks')
 };
-export function getCurrentLabWeek(): string | 'Midsem' | undefined {
+export function getCurrentLabWeek(): string | 'Midsem' | 'MOCK-LAB-WEEK' {
 	const now = dayjs();
 
 	const currentLabWeek = Object.entries(weekStarts).find(
@@ -43,7 +43,7 @@ export function getCurrentLabWeek(): string | 'Midsem' | undefined {
 			return 'Midsem';
 		}
 
-		return;
+		return 'MOCK-LAB-WEEK';
 	}
 
 	return currentLabWeek;
@@ -56,13 +56,13 @@ function createRangeArrayFrom(x: number, y: number) {
 
 const sessionOnDays = {
 	// SUNDAY TO SATURDAY
-	0: [],
+	0: createRangeArrayFrom(0, 6),
 	1: createRangeArrayFrom(0, 1),
 	2: createRangeArrayFrom(1, 3),
 	3: createRangeArrayFrom(3, 5),
-	4: [],
+	4: createRangeArrayFrom(0, 6),
 	5: createRangeArrayFrom(5, 6),
-	6: []
+	6: createRangeArrayFrom(0, 6)
 };
 
 export function getCurrentLabSessions(): LabSession[] {
