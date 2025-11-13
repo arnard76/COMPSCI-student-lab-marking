@@ -3,7 +3,6 @@ export-spreadsheet-photos*
 legacy
 
 # Logs
-logs
 *.log
 npm-debug.log*
 yarn-debug.log*
