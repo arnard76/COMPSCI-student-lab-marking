@@ -4,27 +4,26 @@
 
 Marking means specifying 0, 1 or 2 marks for a student for the current lab based on amount of lab tasks completed by the student.
 
-So in order to mark for a student, the tutor needs to do the following
+So in order to mark for a student, the tutor needs to do the following:
 
-### choose which lab number or week
+1. choose which lab number or week
+2. choose the lab session or datetime
+3. identify the student
 
-### choose the lab session or datetime
+   - name e.g. Arnav Shekaran
+   - ID photo
+   - AUID number e.g. 835020202
+   - UPI e.g. aaba999
+   - email e.g. aaba999@aucklanduni.ac.nz
 
-### identify the student
-
-- name e.g. Arnav Shekaran
-- ID photo
-- AUID number e.g. 835020202
-- UPI e.g. aaba999
-- email e.g. aaba999@aucklanduni.ac.nz
-
-### assess student's tasks
-
-Depending on how many tasks the student has completed, provide a mark of 0, 1 or 2.
+4. assess student's tasks
+   Depending on how many tasks the student has completed, provide a mark of 0, 1 or 2.
 
 ## Design Ideas
 
 - lab number and lab session can be selected before each session to avoid accidentally providing a mark for the correct student but on the wrong session.
+
+- lab number and session can be selected automatically based on date and time?
 
 - instead of typing 0, 1 or 2, press it for speed
 
@@ -44,7 +43,7 @@ Depending on how many tasks the student has completed, provide a mark of 0, 1 or
 
 [Figma Design File](https://www.figma.com/design/L3uzvKARzsDWAlpAvsCMji/mark-COMPSCI-235-student-lab-tasks?node-id=0-1&t=MxjMkn8ajomZBip1-1)
 
-## Implementation Design (Architecture)
+## Modules
 
 - get students list
 - update shared excel file
@@ -58,21 +57,28 @@ Depending on how many tasks the student has completed, provide a mark of 0, 1 or
     - event details
     - datetime
     - lab TA id
-- UI
 
-## 1 ideas
+## Architecture & Tech Stack
+
+| Module                           | Chosen Technology |
+| -------------------------------- | ----------------- |
+| Database of saved marks and logs | Neon DB           |
+| App Hosting                      | Vercel            |
+| App UI                           | SvelteKit         |
+
+## get students list - ideas
 
 - manually upload once?
 - power automate (couldn't find tables in file)
 - zapier (requires uoa admin access :( )
 
-## 2 ideas - update shared excel file
+## update shared excel file - ideas
 
 - manually after each lab using excel scripts
 
 ## Improvement Ideas
 
-### After the first lab session, I noticed these issues!
+### After Lab 1
 
 - add loading after 'mark student' button is clicked ✅
 - ~~automatic screenshot capture~~ not as useful as 👇
@@ -83,7 +89,7 @@ Depending on how many tasks the student has completed, provide a mark of 0, 1 or
   TEMP solution: update from excel ✅
   permanent solution: read excel automatically or use a common database for both?
 
-### After second lab issues:
+### After Lab 2
 
 - have to go to database to export mark students data for excel automate script
   once lab is over, would be great to display the inputs for the excel script
@@ -93,7 +99,9 @@ Depending on how many tasks the student has completed, provide a mark of 0, 1 or
 
 - encourage tutor to put all marks in db into excel spreadsheet (not just the one being marked currently!)
 
-### Just improvements during week 6 (lab05). Smooth sailing so far! Nice
+### After Lab 5
+
+Some improvements during week 6 (lab05). Smooth sailing so far! Nice
 
 - Haptic feedback for error. When something goes wrong, vibrate! ✅✅ vibrates for a second
 
@@ -107,4 +115,4 @@ Depending on how many tasks the student has completed, provide a mark of 0, 1 or
 
 - when searching, the 'clear search' button is tiny next to the search button. The search button is no longer needed because it is only an affordance for what the box is for. The actual search happens automatically (without clicking the search button icon).
 
-![Image proof](https://mark-compsci-235-student-lab-tasks.vercel.app/pick-lab/UI%20issue%20-%20small%20clear%20search%20button.png)
+![Image proof](https://mark-compsci-235-student-lab-tasks.vercel.app/UI%20issue%20-%20small%20clear%20search%20button.png)
